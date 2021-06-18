@@ -28,6 +28,8 @@ public class LocaleHelper {
         return getPersistedData(context, Locale.getDefault().getLanguage());
     }
 
+
+
     public static Context setLocale(Context context, String language) {
         persist(context, language);
 
@@ -50,17 +52,29 @@ public class LocaleHelper {
         editor.putString(SELECTED_LANGUAGE, language);
         editor.apply();
     }
-
-    @TargetApi(Build.VERSION_CODES.N)
     private static Context updateResources(Context context, String language) {
         Locale locale = new Locale(language);
         Locale.setDefault(locale);
 
-        Configuration configuration = context.getResources().getConfiguration();
-        configuration.setLocale(locale);
+        Resources resources = context.getResources();
+
+        Configuration configuration = resources.getConfiguration();
+        configuration.locale = locale;
+
+        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
 
         return context.createConfigurationContext(configuration);
     }
+//    @TargetApi(Build.VERSION_CODES.N)
+//    private static Context updateResources(Context context, String language) {
+//        Locale locale = new Locale(language);
+//        Locale.setDefault(locale);
+//
+//        Configuration configuration = context.getResources().getConfiguration();
+//        configuration.setLocale(locale);
+//
+//        return context.createConfigurationContext(configuration);
+//    }
 
     @SuppressWarnings("deprecation")
     private static Context updateResourcesLegacy(Context context, String language) {
