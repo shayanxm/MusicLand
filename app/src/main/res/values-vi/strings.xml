@@ -1,5 +1,5 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">موزیک پلیر</string>
+    <string name="app_name">موزیک لند</string>
     <string name="queue">لیست</string>
     <string name="library">کتابخانه</string>
     <string name="hello_blank_fragment">صفحه خالی</string>
@@ -155,7 +155,7 @@
     <string name="load_artist_image_mobile">Load artist images on mobile data</string>
     <string name="load_artist_image_mobile_summary">Load artist images even if there is no wifi</string>
 
-    <string name="gestures">Cử chỉ</string>
+    <string name="gestures">وضعیت</string>
     <string name="switching_tracks_by_gestures">Switching tracks using gestures</string>
     <string name="widget_standard">Timber standard widget</string>
     <string name="widget_small">Timber small widget</string>
@@ -180,7 +180,7 @@
     <string name="lastfm_login">Login to LastFM</string>
     <string name="lastfm_loged_in">Logged in as %s</string>
 
-    <string name="cancel">Hủy</string>
+    <string name="cancel">بی خیال</string>
     <string name="bottom_sheet_option_camera">استفاده از دوربین</string>
     <string name="bottom_sheet_option_gallery">از گالری</string>
     <string name="bottom_sheet_option_heading">اضافه کردن عکس</string>
