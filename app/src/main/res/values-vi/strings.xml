@@ -280,4 +280,5 @@
     <string name="uniname">دانشگاه آزاد تهران مرکز</string>
     <string name="saved_lyric">تغییر متن با موفقیت انجام شد</string>
     <string name="no_lyric_stated">برای این اهنگ متنی موجود نیست</string>
+    <string name="fill_this_field_by_lyric">متن اهنگ را اینجا وارد کنید</string>
 </resources>
