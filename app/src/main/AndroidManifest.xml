@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.ldt.musicr">
+
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -12,6 +13,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -22,53 +24,64 @@
         android:theme="@style/AppThemeNoWallpaper"
         tools:ignore="UnusedAttribute">
         <activity
+            android:name=".ui.splash.FullscreenActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_fullscreen"
+            android:theme="@style/AppThemeNoWallpaper.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".ui.AppActivity"
-            android:theme="@style/SplashThemeV2"
-            android:screenOrientation="portrait"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleInstance"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashThemeV2"
             android:windowSoftInputMode="adjustPan|adjustResize"
             tools:ignore="LockedOrientationActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+
                 <action android:name="android.intent.action.MUSIC_PLAYER" />
-                <category android:name="android.intent.category.LAUNCHER" />
+
                 <category android:name="android.intent.category.APP_MUSIC" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <intent-filter>
-            <action android:name="android.intent.action.VIEW" />
-            <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="android.intent.action.VIEW" />
 
-            <data android:scheme="content" />
-            <data android:mimeType="audio/*" />
-            <data android:mimeType="application/ogg" />
-            <data android:mimeType="application/x-ogg" />
-            <data android:mimeType="application/itunes" />
-        </intent-filter>
-        <intent-filter>
-            <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
 
-            <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="content" />
+                <data android:mimeType="audio/*" />
+                <data android:mimeType="application/ogg" />
+                <data android:mimeType="application/x-ogg" />
+                <data android:mimeType="application/itunes" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
 
-            <data android:scheme="file" />
-            <data android:mimeType="audio/*" />
-            <data android:mimeType="application/ogg" />
-            <data android:mimeType="application/x-ogg" />
-            <data android:mimeType="application/itunes" />
-        </intent-filter>
-        <intent-filter>
-            <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
 
-            <category android:name="android.intent.category.DEFAULT" />
-            <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="file" />
+                <data android:mimeType="audio/*" />
+                <data android:mimeType="application/ogg" />
+                <data android:mimeType="application/x-ogg" />
+                <data android:mimeType="application/itunes" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
 
-            <data android:scheme="http" />
-            <data android:mimeType="audio/*" />
-            <data android:mimeType="application/ogg" />
-            <data android:mimeType="application/x-ogg" />
-            <data android:mimeType="application/itunes" />
-        </intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="http" />
+                <data android:mimeType="audio/*" />
+                <data android:mimeType="application/ogg" />
+                <data android:mimeType="application/x-ogg" />
+                <data android:mimeType="application/itunes" />
+            </intent-filter>
             <intent-filter>
                 <action android:name="com.cyanogenmod.eleven.AUDIO_PLAYER" />
 
@@ -82,7 +95,6 @@
 
                 <data android:mimeType="vnd.android.cursor.dir/audio" />
             </intent-filter>
-
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -93,9 +105,11 @@
                 <data android:mimeType="vnd.android.cursor.dir/artists" />
             </intent-filter>
         </activity>
+
         <service
             android:name=".service.MusicService"
-            android:enabled="true"/>
+            android:enabled="true" />
+
         <meta-data
             android:name="android.max_aspect"
             android:value="2.1" />
@@ -109,6 +123,7 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+
         <receiver android:name=".service.MediaButtonIntentReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
@@ -168,7 +183,6 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/app_widget_card_info" />
         </receiver>
-
-
     </application>
+
 </manifest>

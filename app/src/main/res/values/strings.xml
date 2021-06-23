@@ -320,4 +320,7 @@
     <string name="back_description">Back to previous screen</string>
     <string name="left_right_audio_balance">Left Right Audio Balance</string>
     <string name="play_preview_all">Play preview all</string>
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
