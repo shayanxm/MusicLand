@@ -9,12 +9,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
 import com.ldt.musicr.R;
 import com.ldt.musicr.helper.LocaleHelper;
 import com.ldt.musicr.ui.AppActivity;
+import com.ldt.musicr.util.SharedPrefrences;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -108,16 +110,18 @@ public class FullscreenActivity extends AppCompatActivity {
 
         mVisible = true;
 
-
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 Activity activity =new AppActivity();
-                LocaleHelper.setLocale(activity, "vi");
-
+                String texting = "vi";
+                if (SharedPrefrences.loadData(FullscreenActivity.this).equals("en")){
+                    texting = "en";
+                }
+                LocaleHelper.setLocale(FullscreenActivity.this, texting);
+                Log.e("mfs","full"+texting);
                 Intent intent = new Intent(FullscreenActivity.this, AppActivity.class);
-
 
                 startActivity(intent);
             }

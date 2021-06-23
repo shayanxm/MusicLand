@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.appcompat.widget.SwitchCompat;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +26,7 @@ import com.ldt.musicr.ui.page.MusicServiceNavigationFragment;
 import com.ldt.musicr.ui.page.subpages.MoreOptionFragment;
 import com.ldt.musicr.ui.widget.rangeseekbar.OnRangeChangedListener;
 import com.ldt.musicr.ui.widget.rangeseekbar.RangeSeekBar;
+import com.ldt.musicr.util.SharedPrefrences;
 import com.ldt.musicr.util.Tool;
 
 import butterknife.BindView;
@@ -108,9 +111,16 @@ public class SettingTabFragment extends MusicServiceNavigationFragment implement
         Context context = getContext();
         if(context!=null) {
             String lang = LocaleHelper.getLanguage(context);
+
             mIsEnglish = lang.equals(EN);
 
-            if(mIsEnglish) {
+
+                     String texting = "vi";
+            if (SharedPrefrences.loadData(getContext()).equals("en")){
+                texting = "en";
+            }
+            Log.e("mfs","sett"+texting);
+            if(texting.equals("en")) {
                 mSwitchToEn.setBackgroundResource(R.drawable.ripple_16dp_solid_left);
                 mSwitchToVi.setBackgroundResource(R.drawable.ripple_16dp_border_right);
                 mSwitchToEn.setTextColor(getResources().getColor(R.color.flatOrange));
@@ -131,6 +141,7 @@ public class SettingTabFragment extends MusicServiceNavigationFragment implement
         Activity activity = getActivity();
         if(activity!=null) {
             LocaleHelper.setLocale(activity,"en");
+            SharedPrefrences.saveData(getContext(),"en");
            activity.recreate();
         }
     }
@@ -146,6 +157,7 @@ public class SettingTabFragment extends MusicServiceNavigationFragment implement
             Activity activity = getActivity();
             if (activity != null) {
                 LocaleHelper.setLocale(activity, "vi");
+                SharedPrefrences.saveData(getContext(),"vi");
                 activity.recreate();
             }
         }

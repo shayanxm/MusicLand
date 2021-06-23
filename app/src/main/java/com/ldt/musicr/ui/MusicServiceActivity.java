@@ -26,6 +26,8 @@ import com.ldt.musicr.service.MusicPlayerRemote;
 import com.ldt.musicr.service.MusicServiceEventListener;
 
 import com.ldt.musicr.service.MusicService;
+import com.ldt.musicr.ui.splash.FullscreenActivity;
+import com.ldt.musicr.util.SharedPrefrences;
 import com.ldt.musicr.util.Tool;
 
 import java.lang.ref.WeakReference;
@@ -293,7 +295,8 @@ public void addMusicServiceEventListener(final MusicServiceEventListener listene
     }
 
     private Context updateBaseContextLocale(Context context) {
-        String language = LocaleHelper.getLanguage(context); // Helper method to get saved language from SharedPreferences
+        String language = SharedPrefrences.loadData(context);
+        Log.e("mfs",language);
         Locale locale = new Locale(language);
         Locale.setDefault(locale);
 

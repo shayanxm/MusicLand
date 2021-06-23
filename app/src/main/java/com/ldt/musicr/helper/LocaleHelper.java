@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
+import android.util.Log;
+
 import androidx.preference.PreferenceManager;
 
 import java.util.Locale;
@@ -39,15 +41,25 @@ public class LocaleHelper {
 
         return updateResourcesLegacy(context, language);
     }
+    public static Context setLocalex(Context context, String language) {
 
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            return updateResources(context, language);
+        }
+
+        return updateResourcesLegacy(context, language);
+    }
     private static String getPersistedData(Context context, String defaultLanguage) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         return preferences.getString(SELECTED_LANGUAGE, defaultLanguage);
     }
 
     private static void persist(Context context, String language) {
+        Log.e("mff",language);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();
+
 
         editor.putString(SELECTED_LANGUAGE, language);
         editor.apply();
