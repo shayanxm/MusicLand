@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,6 +13,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.ldt.musicr.R;
+import com.ldt.musicr.helper.LocaleHelper;
 import com.ldt.musicr.ui.AppActivity;
 
 /**
@@ -111,6 +113,9 @@ public class FullscreenActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                Activity activity =new AppActivity();
+                LocaleHelper.setLocale(activity, "vi");
+
                 Intent intent = new Intent(FullscreenActivity.this, AppActivity.class);
 
 

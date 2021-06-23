@@ -40,6 +40,7 @@ import com.ldt.musicr.util.NavigationUtil;
 
 
 public class AppActivity extends MusicServiceActivity {
+
     private static final String TAG = "AppActivity";
     private static final int CODE_PERMISSIONS_WRITE_STORAGE = 1;
 
