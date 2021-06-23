@@ -1,7 +1,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">موزیک لند</string>
     <string name="queue">لیست</string>
-    <string name="library">کتابخانه</string>
+    <string name="library">گالری</string>
     <string name="hello_blank_fragment">صفحه خالی</string>
     <string name="start_marker">نشانگر آغاز</string>
     <string name="end_marker">نشانگر پایان</string>
