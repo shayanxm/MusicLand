@@ -27,6 +27,7 @@ import com.ldt.musicr.ui.MusicServiceActivity;
 import com.ldt.musicr.ui.base.FloatingViewFragment;
 import com.ldt.musicr.ui.dialog.WriteTagDialog;
 import com.ldt.musicr.util.MusicUtil;
+import com.ldt.musicr.util.SharedPrefrences;
 import com.ldt.musicr.util.Tool;
 import com.ldt.musicr.util.Util;
 import com.squareup.picasso.Picasso;
@@ -179,8 +180,16 @@ public class LyricBottomSheet extends FloatingViewFragment implements MusicServi
     private void updateLyric() {
         if(mSong !=null) {
             mLyricString = MusicUtil.getLyrics(mSong);
-            if(mLyricString==null||mLyricString.isEmpty())
-                mLyricString = "This song has no lyric.";
+            String savedString="";
+            try {
+                 savedString = SharedPrefrences.getlyric(getContext(),mSong.title);
+            }catch (Exception e){
+                Log.e("fff","null");
+            }
+
+
+            if(mLyricString==null||savedString.equals(""))
+                mLyricString = this.getString(R.string.no_lyric_stated);
 
             boolean isHtml = isHtml(mLyricString);
             if(isHtml) {
@@ -188,7 +197,7 @@ public class LyricBottomSheet extends FloatingViewFragment implements MusicServi
                 mLyricContent.setText(spanned);
             } else
                 mLyricContent.setText(mLyricString);
-
+if (!savedString.equals(""))     mLyricContent.setText(savedString);
             Log.d(TAG, "updateLyric: "+mLyricString);
             mTitle.setText(mSong.title);
             mDescription.setText(mSong.artistName);
@@ -219,30 +228,40 @@ public class LyricBottomSheet extends FloatingViewFragment implements MusicServi
     @OnClick(R.id.edit)
     void edit() {
         mEditingSong = mSong;
-        mEditText.setText(mLyricString);
+        mEditText.setText(SharedPrefrences.getlyric(getContext(),mEditingSong.title));
         mLyricConstraintRoot.setVisibility(View.INVISIBLE);
         mEditConstraintRoot.setVisibility(View.VISIBLE);
     }
 
     @OnClick(R.id.save)
     void saveLyric() {
+String lyrics = mEditText.getText().toString();
+        SharedPrefrences.addlyric(getContext(),mEditingSong.title,mEditText.getText().toString());
+mEditText.setText(SharedPrefrences.getlyric(getContext(),mEditingSong.title));
+        mLyricContent.setText(lyrics);
+
+        mEditText.clearFocus();
         if(getActivity()!=null)
             Util.hideSoftKeyboard(getActivity());
+        mEditConstraintRoot.setVisibility(View.INVISIBLE);
+        mLyricConstraintRoot.setVisibility(View.VISIBLE);
+        updateLyric();
+        Toast.makeText(getContext(),this.getString(R.string.saved_lyric),Toast.LENGTH_SHORT).show();
 
-        if(mEditingSong !=null) {
-            ArrayList<String> path = new ArrayList<>(1);
-            path.add(mEditingSong.data);
-
-            Map<FieldKey, String> fieldKeyValueMap = new EnumMap<>(FieldKey.class);
-            /*fieldKeyValueMap.put(FieldKey.TITLE, songTitle.getText().toString());
-            fieldKeyValueMap.put(FieldKey.ALBUM, albumTitle.getText().toString());
-            fieldKeyValueMap.put(FieldKey.ARTIST, artist.getText().toString());
-            fieldKeyValueMap.put(FieldKey.GENRE, genre.getText().toString());
-            fieldKeyValueMap.put(FieldKey.YEAR, year.getText().toString());
-            fieldKeyValueMap.put(FieldKey.TRACK, trackNumber.getText().toString());*/
-            fieldKeyValueMap.put(FieldKey.LYRICS, mEditText.getText().toString());
-            writeValuesToFiles(path, fieldKeyValueMap, null);
-        }
+//        if(mEditingSong !=null) {
+//            ArrayList<String> path = new ArrayList<>(1);
+//            path.add(mEditingSong.data);
+//
+//            Map<FieldKey, String> fieldKeyValueMap = new EnumMap<>(FieldKey.class);
+//            /*fieldKeyValueMap.put(FieldKey.TITLE, songTitle.getText().toString());
+//            fieldKeyValueMap.put(FieldKey.ALBUM, albumTitle.getText().toString());
+//            fieldKeyValueMap.put(FieldKey.ARTIST, artist.getText().toString());
+//            fieldKeyValueMap.put(FieldKey.GENRE, genre.getText().toString());
+//            fieldKeyValueMap.put(FieldKey.YEAR, year.getText().toString());
+//            fieldKeyValueMap.put(FieldKey.TRACK, trackNumber.getText().toString());*/
+//            fieldKeyValueMap.put(FieldKey.LYRICS, mEditText.getText().toString());
+//            writeValuesToFiles(path, fieldKeyValueMap, null);
+//        }
     }
 
     protected void writeValuesToFiles(List<String> path, final Map<FieldKey, String> fieldKeyValueMap, @Nullable final WriteTagDialog.ArtworkInfo artworkInfo) {

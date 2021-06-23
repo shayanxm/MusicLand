@@ -193,7 +193,7 @@
     <string name="play_all_songs">اجرای همه</string>
     <string name="title_activity_main3">Main3Activity</string>
     <string name="splash">Splash</string>
-    <string name="feature">تازه</string>
+    <string name="feature">تازه ها</string>
     <string name="more">ادامه</string>
     <string name="search_string">جستوجو</string>
     <string name="genres">سبک ها</string>
@@ -265,7 +265,7 @@
     <string name="artist_image_background">عکس هنرمند</string>
     <string name="in_app_volume">میزان بلندی صدا</string>
     <string name="specific_playlist_note">لیست های خاص که از بقیه جدا هستند</string>
-    <string name="change_languague_note">تغییر زبانه به یک وقفه نیاز دارد ولی اهنگتان را متوقف نمی کند</string>
+    <string name="change_languague_note">تغییر زبان به یک وقفه نیاز دارد ولی اهنگتان را متوقف نمی کند</string>
     <string name="more_setting">درباره برنامه نویس</string>
     <string name="back_description">برگشت به صفحه قبل</string>
     <string name="left_right_audio_balance">تنظیم گوش چپ و راست</string>
@@ -278,4 +278,6 @@
     <string name="profossorname">استاد راهنما دکتر جهانشاهی</string>
     <string name="subjeckt">درس پروژه نرم افزار</string>
     <string name="uniname">دانشگاه آزاد تهران مرکز</string>
+    <string name="saved_lyric">تغییر متن با موفقیت انجام شد</string>
+    <string name="no_lyric_stated">برای این اهنگ متنی موجود نیست</string>
 </resources>

@@ -328,4 +328,6 @@
     <string name="profossorname">Professor: Dr. jahan shahi</string>
     <string name="subjeckt">software project lesson</string>
     <string name="uniname"> Azad University Central Tehran Branch</string>
+    <string name="saved_lyric">changing lyric sucessfull</string>
+    <string name="no_lyric_stated">This song has no lyric.</string>
 </resources>
