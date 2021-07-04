@@ -17,7 +17,8 @@ import com.ldt.musicr.R;
 import com.ldt.musicr.helper.LocaleHelper;
 import com.ldt.musicr.ui.AppActivity;
 import com.ldt.musicr.util.SharedPrefrences;
-
+//
+///
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.

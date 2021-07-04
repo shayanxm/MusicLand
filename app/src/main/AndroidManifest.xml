@@ -26,7 +26,7 @@
         <activity
             android:name=".ui.splash.FullscreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_fullscreen"
+            android:label="@string/app_name"
             android:theme="@style/AppThemeNoWallpaper.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
