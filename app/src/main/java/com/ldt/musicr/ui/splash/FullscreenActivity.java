@@ -144,6 +144,28 @@ public class FullscreenActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Activity activity =new AppActivity();
+                String texting = "vi";
+                if (SharedPrefrences.loadData(FullscreenActivity.this).equals("en")){
+                    texting = "en";
+                }
+                LocaleHelper.setLocale(FullscreenActivity.this, texting);
+                Log.e("mfs","full"+texting);
+                Intent intent = new Intent(FullscreenActivity.this, AppActivity.class);
+
+                startActivity(intent);
+            }
+        }, 5000);
+    }
+
+
+    @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
